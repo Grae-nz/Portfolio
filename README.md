@@ -7,7 +7,7 @@ I am passionate about Full Stack Development as I enjoy variety and the differen
 
 ## Portfolio Projects
 - [Kiki Endless Runner](https://github.com/Grae-nz/Portfolio/tree/3fc56a830fc64f9d73a23ac5a835118e05c61399/Kiki%20Endless%20Runner) - Endless Runner game
-- [Agora](https://github.com/Grae-nz/Portfolio/tree/3fc56a830fc64f9d73a23ac5a835118e05c61399/Agora) - E-commerce website 
+- [Agora](https://github.com/Grae-nz/Portfolio/tree/main/Agora) - E-commerce website 
 
 ## Contact
 Grae-@hotmail.com
