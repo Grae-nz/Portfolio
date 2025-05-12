@@ -2,7 +2,7 @@
 
 A 2D endless runner game built in Unity (C#) where you guide Kiki the cat!
 
-![screenshot](Kiki%20Endless%20Runner/screenshot.png)
+![screenshot](screenshot.png)
 
 ---
 
