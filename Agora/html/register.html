@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <link href="../dist/output.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav class="flex flex-wrap justify-between items-center bg-gray-200 p-4">
+      <div class="flex flex-wrap items-center space-x-8"><img src="../images/agoralogo.png" alt="Agora Logo" class="w-[150px] md:w-[200px] h-[150px] md:h-[200px] object-cover rounded-full">
+        <ul class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+          <li><a href="index.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Home</a></li>
+          <li><a href="shop.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Shop</a></li>
+          <li><a href="myaccount.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">My Account</a></li>
+          <li><a href="cart.html"><img src="../images/cart.png" alt="Cart" class="w-[45px] md:w-[55px] h-auto"></a></li>
+        </ul>
+      </div>
+      <div class="flex items-center space-x-4 mt-4 md:mt-0"><button class="px-4 py-2 border bg-white border rounded-md"><a href="register.html">Register</a></button><button id="loginLogoutButton" class="px-4 py-2 border bg-white border rounded-md"><a href="login.html">Login</a></button></div>
+    </nav>
+    <main class="min-h-screen flex justify-center items-center bg-gray-50">
+      <div class="bg-white p-10 rounded-md shadow-md w-full max-w-lg">
+        <h1 class="text-4xl font-bold mb-8 text-center">Sign Up</h1>
+        <form id="registerForm" method="POST" class="space-y-6">
+          <div><label for="accountType" class="block mb-2 text-lg font-medium">Account Type</label><select id="accountType" name="accountType" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+              <option value="">Select Account Type</option>
+              <option value="Seller">Seller</option>
+              <option value="Buyer">Buyer</option>
+              <option value="Business Administrator">Business Administrator</option>
+            </select></div>
+          <div><label for="fullName" class="block mb-2 text-lg font-medium">Full Name</label><input type="text" id="fullName" name="fullName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="userName" class="block mb-2 text-lg font-medium">Username</label><input type="text" id="userName" name="userName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="role" class="block mb-2 text-lg font-medium">Role</label><input type="text" id="role" name="role" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="password" class="block mb-2 text-lg font-medium">Password</label><input type="password" id="password" name="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="passwordConfirmation" class="block mb-2 text-lg font-medium">Confirm Password</label><input type="password" id="passwordConfirmation" name="passwordConfirmation" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="email" class="block mb-2 text-lg font-medium">Email</label><input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="location" class="block mb-2 text-lg font-medium">Location</label><input type="text" id="location" name="location" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div class="flex justify-between items-center"><button type="reset" class="px-4 py-2 bg-gray-400 text-white rounded-md">Cancel</button><button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Submit</button></div>
+        </form>
+      </div>
+    </main>
+    <footer class="p-6 md:p-8 bg-gray-700 text-white mt-8">
+      <div class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8">
+        <div class="flex-shrink-0"><img src="../images/agoralogo.png" alt="Agora Logo" class="w-[100px] md:w-[150px] h-[100px] md:h-[150px] object-cover rounded-full"></div>
+        <ul class="flex flex-col space-y-4 md:space-y-4">
+          <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+          <li><a href="#" class="hover:text-blue-400">Shop</a></li>
+          <li><a href="#" class="hover:text-blue-400">My Account</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center py-4 mt-8">
+        <p>© 2024 Agora Limited</p>
+        <ul class="flex space-x-4">
+          <li><a href="#" class="hover:text-blue-400">About Us</a></li>
+          <li><a href="#" class="hover:text-blue-400">Careers</a></li>
+          <li><a href="#" class="hover:text-blue-400">Advertise</a></li>
+          <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-blue-400">Terms & Conditions</a></li>
+          <li><a href="#" class="hover:text-blue-400">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script >
+      // Gets the login status and updates the login/logout button for the session.
+      fetch('../session.php')
+      .then(response => response.json())
+      .then(data => {
+        const loginLogoutButton = document.getElementById('loginLogoutButton');
+        if (data.loggedIn) {
+          loginLogoutButton.innerHTML = '<a href="../logout.php">Logout</a>';
+        } else {
+          loginLogoutButton.innerHTML = '<a href="login.html">Login</a>';
+        }
+      })
+      .catch(error => console.error('Error fetching login status:', error));
+
+
+      document.getElementById('registerForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('passwordConfirmation').value;
+
+      if (password !== confirmPassword) {
+        alert('Passwords must match!');
+        return;
+      }
+
+      const formData = new FormData(this);
+      
+      // Handles the registration form.
+      fetch('../register.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+          console.log("Response from server:", data);
+
+          if (data.includes('Registration successful!')) {
+            alert('Registration successful!');
+            document.getElementById('registerForm').reset();
+            window.location.href = 'login.html';
+          } else if (data.includes('Username already exists')) {
+            alert('Username already exists. Please choose a different one.');
+          } else if (data.includes('Email already exists')) {
+            alert('Email already exists. Please use a different one.');
+          } else {
+            alert('Error: Unable to register.');
+          }
+        })
+        .catch(error => {
+          console.error('Error in fetch:', error);
+          alert('An error occurred during registration. Please try again.');
+        });
+      }); 
+    </script>
+  </body>
+</html>

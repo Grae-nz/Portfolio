@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>AccountAdministrator</title>
+    <meta charset="utf-8">
+    <link href="../dist/output.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav class="flex flex-wrap justify-between items-center bg-gray-200 p-4">
+      <div class="flex flex-wrap items-center space-x-8"><img src="../images/agoralogo.png" alt="Agora Logo" class="w-[150px] md:w-[200px] h-[150px] md:h-[200px] object-cover rounded-full">
+        <ul class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+          <li><a href="index.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Home</a></li>
+          <li><a href="shop.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Shop</a></li>
+          <li><a href="myaccount.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">My Account</a></li>
+          <li><a href="cart.html"><img src="../images/cart.png" alt="Cart" class="w-[45px] md:w-[55px] h-auto"></a></li>
+        </ul>
+      </div>
+      <div class="flex items-center space-x-4 mt-4 md:mt-0"><button class="px-4 py-2 border bg-white border rounded-md"><a href="register.html">Register</a></button><button id="loginLogoutButton" class="px-4 py-2 border bg-white border rounded-md"><a href="login.html">Login</a></button></div>
+    </nav>
+    <main class="p-8 mt-8 bg-[#c9e7f2]">
+      <h1 id="businessNameHeader" class="text-3xl font-bold mb-8 text-center">Business Name</h1>
+      <div class="flex justify-center space-x-10">
+        <div class="flex flex-col items-center w-64"><img src="../images/noimage2.jpg" alt="Image 1" class="w-full h-[300px] object-cover rounded-lg">
+          <h3 class="text-xl font-semibold mt-4">Create/Manage Business</h3><button id="viewButton" class="inline-block mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">View</button>
+        </div>
+        <div class="flex flex-col items-center w-64"><img src="../images/noimage2.jpg" alt="Image 1" class="w-full h-[300px] object-cover rounded-lg">
+          <h3 class="text-xl font-semibold mt-4">Create/Manage Store</h3><button id="viewStoreButton" class="inline-block mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">View</button>
+        </div>
+        <div class="flex flex-col items-center w-64"><img src="../images/noimage2.jpg" alt="Image 2" class="w-full h-[300px] object-cover rounded-lg">
+          <h3 class="text-xl font-semibold mt-4">Manage Buyers/Sellers</h3><button id="manageButton" class="inline-block mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">Manage</button>
+        </div>
+        <div class="flex flex-col items-center w-64"><img src="../images/noimage2.jpg" alt="Image 3" class="w-full h-[300px] object-cover rounded-lg">
+          <h3 class="text-xl font-semibold mt-4">Invite Users</h3><button id="inviteButton" class="inline-block mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">Invite</button>
+        </div>
+      </div>
+    </main>
+    <div id="manageBusinessForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg relative"><button id="closeForm" class="absolute top-2 right-4 text-gray-500 text-2xl font-bold">&times;</button>
+        <h2 class="text-2xl font-bold mb-6 text-center">Add Business Details</h2>
+        <form id="businessForm" action="../business.php" method="POST" class="space-y-6">
+          <div><label for="businessName" class="block text-lg font-medium">Business Name:</label><input type="text" id="businessName" name="businessName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="businessLogo" class="block text-lg font-medium">Business Logo:</label><input type="file" id="businessLogo" name="businessLogo" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="mt-4"><img id="logoPreview" src="" alt="Business Logo Preview" class="w-32 h-32 object-cover rounded-md hidden"></div>
+          </div>
+          <div><label for="description" class="block text-lg font-medium">Description:</label><textarea id="description" name="description" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea></div>
+          <div><label for="legalDetails" class="block text-lg font-medium">Legal Business Details:</label><textarea id="legalDetails" name="legalDetails" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea></div>
+          <div><label for="hqLocation" class="block text-lg font-medium">HQ Location:</label><input type="text" id="hqLocation" name="hqLocation" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div class="flex justify-end space-x-4"><button type="reset" class="px-4 py-2 bg-gray-400 text-white rounded-md">Clear</button><button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Save</button></div>
+        </form>
+      </div>
+    </div>
+    <div id="manageStoreForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg relative"><button id="closeStoreForm" class="absolute top-2 right-4 text-gray-500 text-2xl font-bold">&times;</button>
+        <h2 class="text-2xl font-bold mb-6 text-center">Add Store Details</h2>
+        <form id="storeForm" action="../businessStore.php" method="POST" class="space-y-6">
+          <div><label for="sellerID" class="block text-lg font-medium">Seller ID:</label><input type="text" id="sellerID" name="sellerID" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="storeName" class="block text-lg font-medium">Store Name:</label><input type="text" id="storeName" name="storeName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="storeLocation" class="block text-lg font-medium">Store Location:</label><input type="text" id="storeLocation" name="storeLocation" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div class="flex justify-end space-x-4"><button type="reset" class="px-4 py-2 bg-gray-400 text-white rounded-md">Clear</button><button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Save</button></div>
+        </form>
+      </div>
+    </div>
+    <div id="manageUserForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg relative"><button id="closeUserForm" class="absolute top-2 right-4 text-gray-500 text-2xl font-bold">&times;</button>
+        <h2 class="text-2xl font-bold mb-6 text-center">Manage Users</h2>
+        <div><label class="block text-lg font-medium">Sellers:</label>
+          <div class="sellers space-y-4"></div>
+        </div>
+        <div><label class="block text-lg font-medium">Buyers:</label>
+          <div class="buyers space-y-4"></div>
+        </div>
+      </div>
+    </div>
+    </form>
+    </div>
+    </div>
+    <div id="manageSellerForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg relative"><button id="closeManageSellerForm" class="absolute top-2 right-4 text-gray-500 text-2xl font-bold">&times;</button>
+        <h2 class="text-2xl font-bold mb-6 text-center">View Seller</h2>
+        <form action="#" method="POST" class="space-y-6">
+          <div><label for="sellerUserID" class="block text-lg font-medium">Seller ID:</label><input type="text" id="sellerUserID" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" value=""></div>
+          <div><label for="sellerUsername" class="block text-lg font-medium">Username:</label><input type="text" id="sellerUsername" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" value=""></div>
+          <div><label for="sellerName" class="block text-lg font-medium">Name:</label><input type="text" id="sellerName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" value=""></div>
+          <div><label for="sellerRole" class="block text-lg font-medium">Role:</label><input type="text" id="sellerRole" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" value=""></div>
+          <div><label for="sellerEmail" class="block text-lg font-medium">Email:</label><input type="email" id="sellerEmail" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" value=""></div>
+        </form>
+      </div>
+    </div>
+    <div id="manageBuyerForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg relative"><button id="closeManageBuyerForm" class="absolute top-2 right-4 text-gray-500 text-2xl font-bold">&times;</button>
+        <h2 class="text-2xl font-bold mb-6 text-center">View Buyer</h2>
+        <form action="#" method="POST" class="space-y-6">
+          <div><label for="buyerUsername" class="block text-lg font-medium">Username:</label><input type="text" id="buyerUsername" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" value=""></div>
+          <div><label for="buyerName" class="block text-lg font-medium">Name:</label><input type="text" id="buyerName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" value=""></div>
+          <div><label for="sellerName" class="block text-lg font-medium">Role:</label><input type="text" id="buyerRole" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" value=""></div>
+          <div><label for="buyerEmail" class="block text-lg font-medium">Email:</label><input type="email" id="buyerEmail" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" value=""></div>
+        </form>
+      </div>
+    </div>
+    <div id="inviteUserForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl relative"><button id="closeInviteForm" class="absolute top-2 right-4 text-gray-500 text-2xl font-bold">&times;</button>
+        <h2 class="text-2xl font-bold mb-6 text-center">Invite Users</h2>
+        <form id="inviteForm" action="../sendInvite.php" method="POST" class="space-y-6">
+          <div class="flex justify-around space-x-12">
+            <div class="w-1/2">
+              <h3 class="text-lg font-bold mb-4">Buyers</h3>
+              <div id="buyersList" class="space-y-4"></div>
+            </div>
+            <div class="w-1/2">
+              <h3 class="text-lg font-bold mb-4">Sellers</h3>
+              <div id="sellersList" class="space-y-4"></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <footer class="p-6 md:p-8 bg-gray-700 text-white mt-8">
+      <div class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8">
+        <div class="flex-shrink-0"><img src="../images/agoralogo.png" alt="Agora Logo" class="w-[100px] md:w-[150px] h-[100px] md:h-[150px] object-cover rounded-full"></div>
+        <ul class="flex flex-col space-y-4 md:space-y-4">
+          <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+          <li><a href="#" class="hover:text-blue-400">Shop</a></li>
+          <li><a href="#" class="hover:text-blue-400">My Account</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center py-4 mt-8">
+        <p>© 2024 Agora Limited</p>
+        <ul class="flex space-x-4">
+          <li><a href="#" class="hover:text-blue-400">About Us</a></li>
+          <li><a href="#" class="hover:text-blue-400">Careers</a></li>
+          <li><a href="#" class="hover:text-blue-400">Advertise</a></li>
+          <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-blue-400">Terms & Conditions</a></li>
+          <li><a href="#" class="hover:text-blue-400">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script >
+	let businessId;
+    // Gets the login status and updates the login/logout button for the session.
+    fetch('../session.php')
+    .then(response => response.json())
+    .then(data => {
+        const loginLogoutButton = document.getElementById('loginLogoutButton');
+        
+        if (data.loggedIn && data.accountType === 'Business Administrator') {
+            businessId = data.businessId;
+            loginLogoutButton.innerHTML = '<a href="../logout.php">Logout</a>';
+        } else {
+            window.location.href = 'index.html';
+        }
+    })
+    .catch(error => {
+        console.error('Error checking session:', error);
+        window.location.href = 'index.html';
+    });
+
+    const viewButton = document.getElementById('viewButton');
+    const manageBusinessForm = document.getElementById('manageBusinessForm');
+    const closeForm = document.getElementById('closeForm');
+
+    // Fetch business name and update the heading
+    function loadBusinessName() {
+        fetch('../business.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.businessName) {
+                    document.getElementById('businessNameHeader').textContent = data.businessName;
+                } else {
+                    console.error(data.error || 'Business name not found');
+                }
+            })
+            .catch(error => console.error('Error fetching business name:', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', loadBusinessName);
+
+    // Loads Business Data into form.
+    function loadBusinessData() {
+        fetch('../getBusiness.php').then(response => response.json()).then(data => {
+            if (!data.error) {
+                document.getElementById('businessName').value = data.businessName;
+                document.getElementById('description').value = data.description;
+                document.getElementById('legalDetails').value = data.legalDetails;
+                document.getElementById('hqLocation').value = data.hqLocation;
+            } else {
+                console.error(data.error);
+            }
+        }).catch(error => console.error('Error fetching business data:', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', loadBusinessData);
+
+    viewButton.addEventListener('click', () => {
+        loadBusinessData();
+        manageBusinessForm.classList.remove('hidden');
+    });
+
+    closeForm.addEventListener('click', () => {
+        manageBusinessForm.classList.add('hidden');
+    });
+
+    // Handles saving detail entries on manageBusinessForm.
+    document.getElementById('businessForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        fetch('../business.php', {
+            method: 'POST',
+            body: formData
+        }).then(response => response.text()).then(data => {
+            if (data.trim() === 'success') {
+                alert('Business details saved successfully!');
+                manageBusinessForm.classList.add('hidden');
+            } else {
+                alert('Error: ' + data);
+            }
+        }).catch(error => console.error('Error:', error));
+    });
+
+    // Displays a preview for a uploaded business logo. (Placeholder as not using Database to hold images).
+    document.getElementById('businessLogo').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const formData = new FormData();
+        formData.append('businessLogo', file);
+
+        fetch('../uploadLogo.php', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.filePath) {
+              const logoPreview = document.getElementById('logoPreview');
+              logoPreview.src = `../${data.filePath}`;
+              logoPreview.classList.remove('hidden');
+            } else {
+              alert(data.error || 'Failed to load image');
+            }
+          })
+          .catch(error => console.error('Error uploading file:', error));
+      }
+    });
+
+    const viewStoreButton = document.getElementById('viewStoreButton');
+    const manageStoreForm = document.getElementById('manageStoreForm');
+    const closeStoreForm = document.getElementById('closeStoreForm');
+
+    // Handles the store form submit.
+    document.getElementById('storeForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        fetch('../businessStore.php', {
+            method: 'POST',
+            body: formData
+        }).then(response => response.text()).then(data => {
+            if (data.trim() === 'success') {
+                alert('Store details saved successfully!');
+                manageStoreForm.classList.add('hidden');
+            } else {
+                alert('Error: ' + data);
+            }
+        }).catch(error => console.error('Error:', error));
+    });
+
+    // Gets the business store details.
+    function loadStoreData() {
+        fetch('../getStore.php')
+            .then(response => response.json())
+            .then(data => {
+                if (!data.error) {
+                    document.getElementById('storeName').value = data.storeName || '';
+                    document.getElementById('storeLocation').value = data.storeLocation || '';
+                    document.getElementById('sellerID').value = data.sellerID || '';
+                } else {
+                    console.error(data.error);
+                }
+            })
+            .catch(error => console.error('Error fetching store data:', error));
+    }
+    document.addEventListener('DOMContentLoaded', loadStoreData);
+
+    viewStoreButton.addEventListener('click', () => {
+        manageStoreForm.classList.remove('hidden');
+    });
+
+    closeStoreForm.addEventListener('click', () => {
+        manageStoreForm.classList.add('hidden');
+    });
+
+    document.getElementById('closeManageSellerForm').addEventListener('click', () => {
+        document.getElementById('manageSellerForm').classList.add('hidden');
+    });
+    document.getElementById('closeManageBuyerForm').addEventListener('click', () => {
+        document.getElementById('manageBuyerForm').classList.add('hidden');
+    });
+
+    const closeUserForm = document.getElementById('closeUserForm');
+    closeUserForm.addEventListener('click', () => {
+        manageUserForm.classList.add('hidden');
+    });
+
+    // Event Handler for the 'Manage' button. Loads and displays linked Buyers/Sellers.
+    manageButton.addEventListener('click', () => {
+        fetch('../getBusinessUsers.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+
+                const buyersList = document.querySelector('#manageUserForm .buyers');
+                const sellersList = document.querySelector('#manageUserForm .sellers');
+                buyersList.innerHTML = '';
+                sellersList.innerHTML = '';
+
+                data.buyers.forEach(buyer => {
+                    const buyerItem = document.createElement('div');
+                    buyerItem.classList.add('flex', 'justify-between', 'items-center', 'space-x-4');
+                    buyerItem.innerHTML = `
+                                    <span class="mr-4">${buyer.username} - ${buyer.email}</span>
+                                    <button type="button" onclick="manageBuyer('${buyer.username}', businessId)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">View</button>
+                                    <button type="button" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 removeUserButton" data-user-id="${buyer.UserID}" data-account-type="Buyer">Remove</button>
+                                `;
+                    buyersList.appendChild(buyerItem);
+                });
+
+                data.sellers.forEach(seller => {
+                    const sellerItem = document.createElement('div');
+                    sellerItem.classList.add('flex', 'justify-between', 'items-center', 'space-x-4');
+                    sellerItem.innerHTML = `
+                                    <span class="mr-4">${seller.username} - ${seller.email}</span>
+                                    <button type="button" onclick="manageSeller('${seller.username}')" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">View</button>
+                                    <button type="button" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 removeUserButton" data-user-id="${seller.UserID}" data-account-type="Seller">Remove</button>
+                                `;
+                    sellersList.appendChild(sellerItem);
+                });
+
+                manageUserForm.classList.remove('hidden');
+            })
+            .catch(error => console.error('Error fetching linked users:', error));
+    });
+
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('removeUserButton')) {
+            const userId = event.target.getAttribute('data-user-id');
+            const accountType = event.target.getAttribute('data-account-type');
+            removeUser(userId, accountType);
+        }
+    });
+
+    // Handles request to remove a user from the manageUserForm.
+    function removeUser(userId, accountType) {
+        if (!confirm(`Are you sure you want to remove this ${accountType}?`)) return;
+
+        fetch('../removeUserFromBusiness.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId
+                })
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                manageButton.click();
+            })
+            .catch(error => console.error('Error removing user:', error));
+    }
+
+    // Gets Buyer details and populates the manageBuyerForm for individual details.
+    function manageBuyer(buyerUsername, businessId) {
+        fetch(`../getBuyersSellers.php?businessId=${businessId}`)
+            .then(response => response.json())
+            .then(data => {
+                const buyer = data.buyers.find(user => user.username === buyerUsername);
+                if (buyer) {
+                    document.getElementById('buyerUsername').value = buyer.username;
+                    document.getElementById('buyerName').value = buyer.FullName;
+                    document.getElementById('buyerRole').value = buyer.Role;
+                    document.getElementById('buyerEmail').value = buyer.email;
+                }
+                document.getElementById('manageBuyerForm').classList.remove('hidden');
+            })
+            .catch(error => console.error('Error fetching buyer details:', error));
+    }
+
+    // Gets Seller details and populates the manageSellerForm for individual details.
+    function manageSeller(sellerUsername, businessId) {
+        fetch(`../getBuyersSellers.php?businessId=${businessId}`)
+            .then(response => response.json())
+            .then(data => {
+                const seller = data.sellers.find(user => user.username === sellerUsername);
+                if (seller) {
+                    document.getElementById('sellerUserID').value = seller.userId;
+                    document.getElementById('sellerUsername').value = seller.username;
+                    document.getElementById('sellerName').value = seller.FullName;
+                    document.getElementById('sellerRole').value = seller.Role;
+                    document.getElementById('sellerEmail').value = seller.email;
+                }
+                document.getElementById('manageSellerForm').classList.remove('hidden');
+            })
+            .catch(error => console.error('Error fetching seller details:', error));
+    }
+
+    const inviteButton = document.getElementById('inviteButton');
+    const inviteUserForm = document.getElementById('inviteUserForm');
+    const closeInviteForm = document.getElementById('closeInviteForm');
+
+    // Event handler for the Invite button. Displays list of all Buyers and Sellers and their details.
+    // Sets up additional 'Invite' button for each user.
+    inviteButton.addEventListener('click', () => {
+        fetch('../getBuyersSellers.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+
+                const buyersList = document.getElementById('buyersList');
+                const sellersList = document.getElementById('sellersList');
+                buyersList.innerHTML = '';
+                sellersList.innerHTML = '';
+
+                data.buyers.forEach(buyer => {
+                    const buyerItem = document.createElement('div');
+                    buyerItem.classList.add('flex', 'justify-between', 'items-center', 'space-x-4');
+                    buyerItem.innerHTML = `
+                                    <span class="mr-4">${buyer.username} - ${buyer.email}</span>
+                                    <button type="button" onclick="inviteUser('${buyer.email}', '${buyer.username}', '${buyer.userId}', '${data.businessId}')" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Invite</button>
+                                `;
+                    buyersList.appendChild(buyerItem);
+                });
+
+                data.sellers.forEach(seller => {
+                    const sellerItem = document.createElement('div');
+                    sellerItem.classList.add('flex', 'justify-between', 'items-center', 'space-x-4');
+                    sellerItem.innerHTML = `
+                                    <span class="mr-4">${seller.username} - ${seller.email}</span>
+                                    <button type="button" onclick="inviteUser('${seller.email}', '${seller.username}', '${seller.userId}', '${data.businessId}')" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Invite</button>
+                                `;
+                    sellersList.appendChild(sellerItem);
+                });
+            })
+            .catch(error => console.error('Error fetching users:', error));
+
+        inviteUserForm.classList.remove('hidden');
+    });
+
+    closeInviteForm.addEventListener('click', () => {
+        inviteUserForm.classList.add('hidden');
+    });
+
+    // Handles sending an invite to the user.
+    function inviteUser(email, username, userId, businessId) {
+        fetch('../inviteUsers.php', {
+                method: 'POST', headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({email, username, userId, businessId})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.success);
+                } else {
+                    alert(data.error || 'An error occurred.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>  
+</body>
+</html>

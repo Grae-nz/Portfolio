@@ -1,0 +1,9 @@
+AccountType,Role,UserName,FullName,Password,Email,Location
+Business Administrator,Owner of Steaks R Us,MikeSteaks,Mike Steaks,$2y$10$samplehashedpassword123456,mikesteaks@hotmail.com,"Christchurch, New Zealand"
+Business Administrator,Owner of Cabbages R Us,CarolKimchi,Carol Kimchi,$2y$10$samplehashedpassword123457,carolkimchi@hotmail.com,"Dunedin, New Zealand"
+Seller,Seller of Steaks R Us,TboneDave,Tbone Dave,$2y$10$samplehashedpassword123458,tbonedave@hotmail.com,"Christchurch, New Zealand"
+Seller,Seller of Cabbages R US,CabChick,Cab Chick,$2y$10$samplehashedpassword123459,cabchick@hotmail.com,"Dunedin, New Zealand"
+Buyer,Buyer of Steaks,TboneLover,Hank Hill,$2y$10$samplehashedpassword123460,hankhill@hotmail.com,"Christchurch, New Zealand"
+Buyer,Buyer of Steaks,RibeyeLover,Bobby Hill,$2y$10$samplehashedpassword123461,bobbyhill@hotmail.com,"Timaru, New Zealand"
+Buyer,Buyer of Cabbages,KimchiLover,Homer Simpson,$2y$10$samplehashedpassword123462,homersimpson@hotmail.com,"Dunedin, New Zealand"
+Buyer,Buyer of Cabbages,SauerkrautLover,Bart Simpson,$2y$10$samplehashedpassword123463,bartsimpson@hotmail.com,"Dunedin, New Zealand"

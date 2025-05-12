@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>User Profile</title>
+    <meta charset="utf-8">
+    <link href="../dist/output.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav class="flex flex-wrap justify-between items-center bg-gray-200 p-4">
+      <div class="flex flex-wrap items-center space-x-8"><img src="../images/agoralogo.png" alt="Agora Logo" class="w-[150px] md:w-[200px] h-[150px] md:h-[200px] object-cover rounded-full">
+        <ul class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+          <li><a href="index.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Home</a></li>
+          <li><a href="shop.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Shop</a></li>
+          <li><a href="myaccount.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">My Account</a></li>
+          <li><a href="cart.html"><img src="../images/cart.png" alt="Cart" class="w-[45px] md:w-[55px] h-auto"></a></li>
+        </ul>
+      </div>
+      <div class="flex items-center space-x-4 mt-4 md:mt-0"><button class="px-4 py-2 border bg-white border rounded-md"><a href="register.html">Register</a></button><button id="loginLogoutButton" class="px-4 py-2 border bg-white border rounded-md"><a href="login.html">Login</a></button></div>
+    </nav>
+    <main class="min-h-screen flex flex-col items-center mt-4 bg-gray-50">
+      <div class="text-center w-full">
+        <h1 class="text-4xl font-bold mb-6 text-center">Shop</h1>
+      </div>
+      <div id="productList" class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full px-4"></div>
+      <div id="productDetailForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg relative"><button id="closeProductDetailForm" class="absolute top-2 right-4 text-gray-500 text-2xl font-bold">&times;</button>
+          <div class="flex flex-col items-center"><img id="ProductImage" src="" alt="Product Image" class="w-64 h-64 object-cover rounded-md mb-4">
+            <h2 id="ProductName" class="text-2xl font-bold mb-2"></h2>
+            <p id="ProductDescription" class="text-md mb-4"></p>
+            <p id="ProductPrice" class="text-lg font-bold mb-2"></p>
+            <p id="ProductShippingOptions" class="text-md mb-2"></p>
+            <p id="StoreName" class="text-md font-semibold text-gray-500 mb-4"></p>
+            <form id="buyNowForm" class="space-y-6 w-full">
+              <div>
+                <h3 class="text-xl font-semibold">Quantity:</h3><input type="number" name="quantity" min="1" value="1" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold">Shipping & Pickup Options:</h3><select name="shippingOption" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="Pickup">Pickup</option>
+                  <option value="Delivery">Delivery</option>
+                </select>
+              </div>
+              <div class="flex justify-center"><button type="button" id="buyNowButton" class="buyNowButton inline-block mt-2 px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600">Buy Now</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="p-6 md:p-8 bg-gray-700 text-white mt-8">
+      <div class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8"><img src="../images/agoralogo.png" alt="Agora Logo" class="w-[100px] md:w-[150px] h-[100px] md:h-[150px] object-cover rounded-full">
+        <ul class="flex flex-col space-y-4 md:space-y-4">
+          <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+          <li><a href="#" class="hover:text-blue-400">Shop</a></li>
+          <li><a href="#" class="hover:text-blue-400">My Account</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center py-4 mt-8">
+        <p>© 2024 Agora Limited</p>
+        <ul class="flex space-x-4">
+          <li><a href="#" class="hover:text-blue-400">About Us</a></li>
+          <li><a href="#" class="hover:text-blue-400">Careers</a></li>
+          <li><a href="#" class="hover:text-blue-400">Advertise</a></li>
+          <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-blue-400">Terms & Conditions</a></li>
+          <li><a href="#" class="hover:text-blue-400">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script >
+        // Gets the login status and updates the login/logout button for the session.
+        fetch('../session.php')
+        .then(response => response.json())
+        .then(data => {
+            const loginLogoutButton = document.getElementById('loginLogoutButton');
+            if (data.loggedIn) {
+            loginLogoutButton.innerHTML = '<a href="../logout.php">Logout</a>';
+            } else {
+            loginLogoutButton.innerHTML = '<a href="login.html">Login</a>';
+            }
+        })
+      .catch(error => console.error('Error fetching login status:', error));
+        
+      // Gets and displays all store products.
+        function loadProducts() {
+            fetch('../getProducts.php')
+                .then(response => response.json())
+                .then(data => {
+                    const productContainer = document.getElementById('productList');
+                    productContainer.innerHTML = '';
+    
+                    if (data.products && data.products.length > 0) {
+                        data.products.forEach(product => {
+                            const productCard = document.createElement('div');
+                            productCard.classList.add('p-4', 'border', 'rounded-lg', 'bg-white', 'shadow-md', 'flex', 'flex-col', 'items-center', 'text-center');
+                            const productImageSrc = product.ProductImage ? `../images/${product.ProductImage}` : '../images/noimage2.jpg';
+    
+                            productCard.innerHTML = `
+                                    <img src="${productImageSrc}" alt="${product.ProductName}" class="w-32 h-32 object-cover rounded-md mb-4">
+                                    <h2 class="text-xl font-bold mb-2">${product.ProductName}</h2>
+                                    <p class="font-bold mb-2">$${product.Price}</p>
+                                    <button class="viewProductButton mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">View</button>
+                                `;
+    
+                            productCard.querySelector('.viewProductButton').addEventListener('click', () => openProductDetailForm(product.ProductID));
+                            productContainer.appendChild(productCard);
+                        });
+                    } else {
+                        productContainer.innerHTML = '<p>No products available.</p>';
+                    }
+                })
+                .catch(error => console.error('Error loading products:', error));
+        }
+    
+    // Show individual product details in form.
+    function openProductDetailForm(productId) {
+    fetch(`../getProductDetails.php?productId=${productId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('ProductImage').src = data.product.ProductImage ? `../images/${data.product.ProductImage}` : '../images/noimage2.jpg';
+                const productNameElement = document.getElementById('ProductName');
+                productNameElement.textContent = data.product.ProductName;
+                productNameElement.dataset.productId = productId;
+                document.getElementById('ProductDescription').textContent = data.product.Description;
+                document.getElementById('ProductPrice').textContent = `$${data.product.Price}`;
+                document.getElementById('ProductShippingOptions').textContent = `Shipping Option: ${data.product.ShippingOptions}`;
+                document.getElementById('StoreName').textContent = `Store: ${data.product.StoreName}`;
+
+                document.getElementById('productDetailForm').classList.remove('hidden');
+            } else {
+                alert('Failed to load product details.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    
+    document.getElementById('closeProductDetailForm').addEventListener('click', function() {
+        document.getElementById('productDetailForm').classList.add('hidden');
+    });
+    
+    // Handles creating an order.
+    document.getElementById('buyNowButton').addEventListener('click', function() {
+    const quantity = document.querySelector('input[name="quantity"]').value;
+    const shippingOption = document.querySelector('select[name="shippingOption"]').value;
+    const productId = document.getElementById('ProductName').dataset.productId;
+    const orderData = new FormData();
+    orderData.append('productID', productId);
+    orderData.append('quantity', quantity);
+    orderData.append('shippingOption', shippingOption);
+
+    fetch('../createOrder.php', {
+        method: 'POST',
+        body: orderData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Item purchased!');
+            document.getElementById('productDetailForm').classList.add('hidden');
+        } else {
+            alert(data.error || 'Purchase failed!');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+    });
+    
+    document.addEventListener('DOMContentLoaded', loadProducts); 
+    </script>
+  </body>
+</html>

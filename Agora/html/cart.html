@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>cart</title>
+    <meta charset="utf-8">
+      <link href="../dist/output.css" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+      <nav class="flex flex-wrap justify-between items-center bg-gray-200 p-4">
+        <div class="flex flex-wrap items-center space-x-8">
+          <img src="../images/agoralogo.png" alt="Agora Logo" class="w-[150px] md:w-[200px] h-[150px] md:h-[200px] object-cover rounded-full">
+          <ul class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+            <li><a href="index.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Home</a></li>
+            <li><a href="shop.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Shop</a></li>
+            <li><a href="myaccount.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">My Account</a></li>
+            <li><a href="cart.html"><img src="../images/cart.png" alt="Cart" class="w-[45px] md:w-[55px] h-auto"></a></li>
+          </ul>
+        </div>
+        <div class="flex items-center space-x-4 mt-4 md:mt-0">
+          <button class="px-4 py-2 border bg-white border rounded-md"><a href="register.html">Register</a></button>
+          <button id="loginLogoutButton" class="px-4 py-2 border bg-white border rounded-md"><a href="login.html">Login</a></button>
+        </div>
+      </nav>
+      <main class="min-h-screen flex justify-center items-center bg-gray-50">
+        <div class="bg-white p-10 rounded-md shadow-md w-full max-w-lg">
+          <form id="cartForm" action="#" method="POST" class="space-y-6">
+            <h1 class="col-span-1 md:col-span-3 text-3xl font-bold mb-8 text-center">Your Cart (2 items)</h1>
+            <div class="grid grid-cols-4 text-center font-bold text-lg mb-4 gap-x-2">
+              <div>Item</div>
+              <div>Price</div>
+              <div>Quantity</div>
+              <div>Total</div>
+            </div>
+            <div class="grid grid-cols-4 text-center items-center mb-4 gap-x-2">
+              <div class="flex flex-col items-center space-y-4">
+                <img src="../images/noimage2.jpg" alt="Item 1" class="w-[100px] h-[100px] object-cover rounded-lg">
+                <p>Item1</p>
+              </div>
+              <div>
+                <p>$500</p>
+              </div>
+              <div>
+                <p>1</p>
+              </div>
+              <div>
+                <p>$500</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-4 text-center items-center mb-4 gap-x-2">
+              <div class="flex flex-col items-center space-y-4">
+                <img src="../images/noimage2.jpg" alt="Item 2" class="w-[100px] h-[100px] object-cover rounded-lg">
+                <p>Item2</p>
+              </div>
+              <div>
+                <p>$500</p>
+              </div>
+              <div>
+                <p>2</p>
+              </div>
+              <div>
+                <p>$1000</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-4 items-center text-right mt-8 gap-x-2">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div class="text-lg font-bold">
+                <p class="mb-4">Grand Total: $1500</p>
+                <button type="submit" class="px-6 py-2 text-white bg-green-500 rounded-md hover:bg-green-600">Checkout</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </main>
+      <footer class="p-6 md:p-8 bg-gray-700 text-white mt-8">
+        <div class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8">
+          <div class="flex-shrink-0">
+            <img src="../images/agoralogo.png" alt="Agora Logo" class="w-[100px] md:w-[150px] h-[100px] md:h-[150px] object-cover rounded-full">
+          </div>
+          <ul class="flex flex-col space-y-4 md:space-y-4">
+            <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+            <li><a href="#" class="hover:text-blue-400">Shop</a></li>
+            <li><a href="#" class="hover:text-blue-400">My Account</a></li>
+          </ul>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center py-4 mt-8">
+          <p>© 2024 Agora Limited</p>
+          <ul class="flex space-x-4">
+            <li><a href="#" class="hover:text-blue-400">About Us</a></li>
+            <li><a href="#" class="hover:text-blue-400">Careers</a></li>
+            <li><a href="#" class="hover:text-blue-400">Advertise</a></li>
+            <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-blue-400">Terms & Conditions</a></li>
+            <li><a href="#" class="hover:text-blue-400">Contact Us</a></li>
+          </ul>
+        </div>
+      </footer>
+
+      <script>
+        // Gets the login status and updates the login/logout button for the session.
+        fetch('../session.php')
+        .then(response => response.json())
+        .then(data => {
+            const loginLogoutButton = document.getElementById('loginLogoutButton');
+            if (data.loggedIn) {
+                loginLogoutButton.innerHTML = '<a href="../logout.php">Logout</a>';
+            } else {
+                loginLogoutButton.innerHTML = '<a href="login.html">Login</a>';
+            }
+        })
+        .catch(error => console.error('Error fetching login status:', error));
+      </script>
+  </body>
+</html>

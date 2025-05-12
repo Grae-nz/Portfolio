@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>SellerStore</title>
+    <meta charset="utf-8">
+    <link href="../dist/output.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav class="flex flex-wrap justify-between items-center bg-gray-200 p-4">
+      <div class="flex flex-wrap items-center space-x-8"><img src="../images/agoralogo.png" alt="Agora Logo" class="w-[150px] md:w-[200px] h-[150px] md:h-[200px] object-cover rounded-full">
+        <ul class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+          <li><a href="index.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Home</a></li>
+          <li><a href="shop.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Shop</a></li>
+          <li><a href="myaccount.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">My Account</a></li>
+          <li><a href="cart.html"><img src="../images/cart.png" alt="Cart" class="w-[45px] md:w-[55px] h-auto"></a></li>
+        </ul>
+      </div>
+      <div class="flex items-center space-x-4 mt-4 md:mt-0"><button class="px-4 py-2 border bg-white border rounded-md"><a href="register.html">Register</a></button><button id="loginLogoutButton" class="px-4 py-2 border bg-white border rounded-md"><a href="login.html">Login</a></button></div>
+    </nav>
+    <main class="p-8 mt-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 bg-gray-50 pt-6 pb-6">
+        <h1 id="storeNameHeader" class="col-span-1 md:col-span-3 text-3xl font-bold mb-8 text-center">Store Name</h1>
+        <h1 class="col-span-1 md:col-span-3 text-3xl font-bold mb-8 text-center">Store Listings</h1>
+        <div class="col-span-1 md:col-span-3 text-center mb-4"><button id="openForm" class="inline-block mt-2 px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600">Add New Listing</button></div>
+        <div class="product-list col-span-1 md:col-span-3"></div>
+      </div>
+    </main>
+    <div id="listingForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg relative"><button id="closeForm" class="absolute top-2 right-4 text-gray-500 text-2xl font-bold">&times;</button>
+        <h2 class="text-2xl font-bold mb-6 text-center">Add New Listing</h2>
+        <form action="#" method="POST" class="space-y-6">
+          <div><label for="productName" class="block mb-2 text-lg font-medium">Product Name</label><input type="text" id="productName" name="productName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="productImage" class="block mb-2 text-lg font-medium">Upload Image</label><input type="file" id="productImage" name="productImage" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="mt-4"><img id="productImagePreview" src="" alt="Product Image Preview" class="w-32 h-32 object-cover rounded-md hidden"></div>
+          </div>
+          <div><label for="description" class="block mb-2 text-lg font-medium">Description</label><textarea id="description" name="description" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea></div>
+          <div><label for="price" class="block mb-2 text-lg font-medium">Price</label>
+            <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">$</span><input type="text" id="price" name="price" class="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          </div>
+          <div><label for="shippingOptions" class="block mb-2 text-lg font-medium">Shipping & Pickup Options</label><select id="shippingOptions" name="shippingOptions" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+              <option value="">Select Option</option>
+              <option value="pickup">Pickup</option>
+              <option value="delivery">Delivery</option>
+              <option value="both">Both Pickup & Delivery</option>
+            </select></div>
+          <div class="flex justify-between items-center"><button type="reset" class="px-4 py-2 bg-gray-400 text-white rounded-md">Clear</button><button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Submit</button></div>
+        </form>
+      </div>
+    </div>
+    <div id="updateForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg relative"><button id="closeUpdateForm" class="absolute top-2 right-4 text-gray-500 text-2xl font-bold">&times;</button>
+        <h2 class="text-2xl font-bold mb-6 text-center">Update Listing</h2>
+        <form id="updateProductForm" action="#" method="POST" class="space-y-6">
+          <div><label for="updateProductName" class="block mb-2 text-lg font-medium">Product Name</label><input type="text" id="updateProductName" name="productName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="updateDescription" class="block mb-2 text-lg font-medium">Description</label><textarea id="updateDescription" name="description" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea></div>
+          <div><label for="updatePrice" class="block mb-2 text-lg font-medium">Price</label><input type="text" id="updatePrice" name="price" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></div>
+          <div><label for="updateShippingOptions" class="block mb-2 text-lg font-medium">Shipping Options</label><select id="updateShippingOptions" name="shippingOptions" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+              <option value="">Select Option</option>
+              <option value="pickup">Pickup</option>
+              <option value="delivery">Delivery</option>
+              <option value="both">Both Pickup & Delivery</option>
+            </select></div>
+          <div class="flex justify-between items-center"><button type="reset" class="px-4 py-2 bg-gray-400 text-white rounded-md">Clear</button><button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Save Changes</button></div><input type="hidden" id="updateProductId" name="productId">
+        </form>
+      </div>
+    </div>
+    <footer class="p-6 md:p-8 bg-gray-700 text-white mt-8">
+      <div class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8">
+        <div class="flex-shrink-0"><img src="../images/agoralogo.png" alt="Agora Logo" class="w-[100px] md:w-[150px] h-[100px] md:h-[150px] object-cover rounded-full"></div>
+        <ul class="flex flex-col space-y-4 md:space-y-4">
+          <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+          <li><a href="#" class="hover:text-blue-400">Shop</a></li>
+          <li><a href="#" class="hover:text-blue-400">My Account</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center py-4 mt-8">
+        <p>© 2024 Agora Limited</p>
+        <ul class="flex space-x-4">
+          <li><a href="#" class="hover:text-blue-400">About Us</a></li>
+          <li><a href="#" class="hover:text-blue-400">Careers</a></li>
+          <li><a href="#" class="hover:text-blue-400">Advertise</a></li>
+          <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-blue-400">Terms & Conditions</a></li>
+          <li><a href="#" class="hover:text-blue-400">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script >
+      // Gets the login status and updates the login/logout button for the session.
+      fetch('../session.php')
+      .then(response => response.json())
+      .then(data => {
+          const loginLogoutButton = document.getElementById('loginLogoutButton');
+          
+          if (data.loggedIn && data.accountType === 'Seller') {
+              businessId = data.businessId;
+              loginLogoutButton.innerHTML = '<a href="../logout.php">Logout</a>';
+          } else {
+              window.location.href = 'index.html';
+          }
+      })
+    
+      // Handles getting the store name.
+      function loadStoreName() {
+        fetch('../businessStore.php')
+          .then(response => response.json())
+          .then(data => {
+            if (data.storeName) {
+              document.getElementById('storeNameHeader').textContent = data.storeName;
+            } else {
+              console.error(data.error || 'Store name not found');
+            }
+          })
+          .catch(error => console.error('Error fetching store name:', error));
+      }
+      
+      document.addEventListener('DOMContentLoaded', loadStoreName);
+      
+      document.getElementById('listingForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+      
+        const formData = new FormData();
+        formData.append('productName', document.getElementById('productName').value);
+        formData.append('description', document.getElementById('description').value);
+        formData.append('price', document.getElementById('price').value);
+        formData.append('productImage', document.getElementById('productImage').files[0]);
+        formData.append('shippingOptions', document.getElementById('shippingOptions').value);
+      
+        // Handles the add product form.
+        fetch('../addProduct.php', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              alert('Product added successfully!');
+              document.getElementById('listingForm').classList.add('hidden');
+              loadStoreProducts();
+            } else {
+              alert('Error adding product: ' + data.error);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      });
+      
+      // Handles getting/displaying the stores products.
+      function loadStoreProducts() {
+        fetch('../getStoreProducts.php')
+          .then(response => response.json())
+          .then(data => {
+            if (data.products) {
+              const productContainer = document.querySelector('.product-list');
+              productContainer.innerHTML = '';
+      
+              data.products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.classList.add('product', 'cursor-pointer', 'p-4', 'border-b', 'border-gray-300');
+                productItem.innerHTML = `
+                          <h2>${product.ProductName}</h2>
+                          <p>${product.Description}</p>
+                          <p>$${product.Price}</p>
+                          <p>Shipping Option: ${product.ShippingOptions}</p>
+                      `;
+                productItem.addEventListener('click', () => openUpdateForm(product));
+                productContainer.appendChild(productItem);
+              });
+            } else {
+              console.error('Error loading products:', data.error);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      }
+      
+      // Handles the update form.
+      function openUpdateForm(product) {
+        document.getElementById('updateProductName').value = product.ProductName;
+        document.getElementById('updateDescription').value = product.Description;
+        document.getElementById('updatePrice').value = product.Price;
+        document.getElementById('updateShippingOptions').value = product.ShippingOptions;
+        document.getElementById('updateProductId').value = product.ProductID;
+        document.getElementById('updateForm').classList.remove('hidden');
+      }
+      
+      document.addEventListener('DOMContentLoaded', loadStoreProducts);
+      
+      document.getElementById('openForm').addEventListener('click', function() {
+        document.getElementById('listingForm').classList.remove('hidden');
+      });
+      
+      document.getElementById('closeForm').addEventListener('click', function() {
+        document.getElementById('listingForm').classList.add('hidden');
+      });
+      
+      document.getElementById('closeUpdateForm').addEventListener('click', () => {
+        document.getElementById('updateForm').classList.add('hidden');
+      });
+      
+      // Handles the dropdown menu for shipping options.
+      function setEditShippingOption(optionValue) {
+        const editShippingSelect = document.getElementById('editShippingOptions');
+        editShippingSelect.value = optionValue || '';
+      }
+      
+      document.getElementById('updateProductForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+      
+        const formData = new FormData();
+        formData.append('productId', document.getElementById('updateProductId').value);
+        formData.append('productName', document.getElementById('updateProductName').value);
+        formData.append('description', document.getElementById('updateDescription').value);
+        formData.append('price', document.getElementById('updatePrice').value);
+        formData.append('shippingOptions', document.getElementById('updateShippingOptions').value);
+      
+        // Handles the update of a product.
+        fetch('../updateProduct.php', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.text())
+          .then(text => {
+            try {
+              const data = JSON.parse(text);
+              if (data.success) {
+                alert('Product updated successfully!');
+                document.getElementById('updateForm').classList.add('hidden');
+                loadStoreProducts();
+              } else {
+                alert('Error updating product: ' + data.error);
+              }
+            } catch (error) {
+              console.error('Failed to parse JSON:', error, 'Response text:', text);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      });
+      
+      // Placeholder for uploading a image.
+      document.getElementById('productImage').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const productImagePreview = document.getElementById('productImagePreview');
+            productImagePreview.src = e.target.result;
+            productImagePreview.classList.remove('hidden');
+          };
+          reader.readAsDataURL(file);
+        }
+      });   
+    </script>
+  </body>
+</html>

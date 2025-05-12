@@ -1,0 +1,44 @@
+# -------------------------
+# OS & Editor Junk
+# -------------------------
+.DS_Store
+Thumbs.db
+*.log
+
+# VS Code & IDEs
+.vscode/
+.idea/
+
+# -------------------------
+# Dependency Folders
+# -------------------------
+node_modules/
+vendor/
+
+# -------------------------
+# Environment / Secrets
+# -------------------------
+.env
+.env.local
+config.php
+*.bak
+
+# -------------------------
+# PHP / Web Output
+# -------------------------
+*.cache
+*.gz
+*.zip
+
+# -------------------------
+# Database Dumps (optional)
+# -------------------------
+*.sql
+*.sqlite
+
+# -------------------------
+# Others (optional)
+# -------------------------
+*.swp
+*.tmp
+*.~ 

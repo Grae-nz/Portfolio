@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>My Account</title>
+    <meta charset="utf-8">
+    <link href="../dist/output.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav class="flex flex-wrap justify-between items-center bg-gray-200 p-4">
+      <div class="flex flex-wrap items-center space-x-8">
+        <img src="../images/agoralogo.png" alt="Agora Logo" class="w-[150px] md:w-[200px] h-[150px] md:h-[200px] object-cover rounded-full">
+        <ul class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+          <li><a href="index.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Home</a></li>
+          <li><a href="shop.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">Shop</a></li>
+          <li><a href="myaccount.html" class="flex items-center justify-center w-32 md:w-40 h-12 px-4 py-2 bg-white rounded-md">My Account</a></li>
+          <li><a href="cart.html"><img src="../images/cart.png" alt="Cart" class="w-[45px] md:w-[55px] h-auto"></a></li>
+        </ul>
+      </div>
+      <div class="flex items-center space-x-4 mt-4 md:mt-0">
+        <button class="px-4 py-2 border bg-white border rounded-md"><a href="register.html">Register</a></button>
+        <button id="loginLogoutButton" class="px-4 py-2 border bg-white border rounded-md"><a href="login.html">Login</a></button>
+      </div>
+    </nav>
+
+    <main class="min-h-screen flex justify-center mt-4 bg-gray-50">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold">Welcome to your member area!</h1>
+        <p id="userInfo" class="mt-4 mb-4 text-lg">...</p>
+        <button id="manageBusinessButton" class="px-4 py-2 bg-blue-500 mt-8 text-white rounded-md hidden">Manage Business</button>
+        <button id="manageStoreButton" class="px-4 py-2 bg-blue-500 mt-8 text-white rounded-md hidden">Seller Store</button>
+        <button id="manageProfileButton" class="px-4 py-2 bg-blue-500 mt-8 text-white rounded-md hidden">Manage Profile</button>
+      </div>
+    </main>
+
+    <footer class="p-6 md:p-8 bg-gray-700 text-white mt-8">
+      <div class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8">
+        <img src="../images/agoralogo.png" alt="Agora Logo" class="w-[100px] md:w-[150px] h-[100px] md:h-[150px] object-cover rounded-full">
+        <ul class="flex flex-col space-y-4 md:space-y-4">
+          <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+          <li><a href="#" class="hover:text-blue-400">Shop</a></li>
+          <li><a href="#" class="hover:text-blue-400">My Account</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center py-4 mt-8">
+        <p>© 2024 Agora Limited</p>
+        <ul class="flex space-x-4">
+          <li><a href="#" class="hover:text-blue-400">About Us</a></li>
+          <li><a href="#" class="hover:text-blue-400">Careers</a></li>
+          <li><a href="#" class="hover:text-blue-400">Advertise</a></li>
+          <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-blue-400">Terms & Conditions</a></li>
+          <li><a href="#" class="hover:text-blue-400">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script >
+      // Gets the login status and updates the login/logout button for the session.
+      fetch('../session.php')
+      .then(response => response.json())
+      .then(data => {
+        const loginLogoutButton = document.getElementById('loginLogoutButton');
+        if (data.loggedIn) {
+          loginLogoutButton.innerHTML = '<a href="../logout.php">Logout</a>';
+        } else {
+          loginLogoutButton.innerHTML = '<a href="login.html">Login</a>';
+        }
+      })
+      .catch(error => console.error('Error fetching login status:', error));
+
+      // Get the session data of the user logged in.
+      fetch('../getUserDetails.php')
+        .then(response => {
+          if (!response.ok) {
+            window.location.href = 'login.html';
+            throw new Error('User not logged in');
+          }
+          return response.json();
+        })
+        .then(data => {
+          document.getElementById('userInfo').textContent = `You are logged in as User: ${data.userName}`;
+
+          if (data.accountType === 'Business Administrator') {
+            document.getElementById('manageBusinessButton').classList.remove('hidden');
+            document.getElementById('manageBusinessButton').addEventListener('click', () => {
+              window.location.href = 'business.html';
+            });
+          }
+
+          if (data.accountType === 'Seller') {
+            document.getElementById('manageStoreButton').classList.remove('hidden');
+            document.getElementById('manageStoreButton').addEventListener('click', () => {
+              window.location.href = 'sellerstore.html';
+            });
+          }
+
+          document.getElementById('manageProfileButton').classList.remove('hidden');
+          document.getElementById('manageProfileButton').addEventListener('click', () => {
+            window.location.href = 'userprofile.html';
+          });
+        })
+        .catch(error => console.error('Error fetching user data:', error)); 
+    </script>     
+  </body>
+</html>
+

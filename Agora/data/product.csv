@@ -1,0 +1,7 @@
+StoreID,ProductName,ProductImage,Description,Price,ShippingOptions
+1,Tbone Steak,,Angus grain fed,50.0,Pickup
+1,Ribeye Steak,,Japanese Wagyu,100.0,Delivery
+1,Porterhouse Steak,,Australian import,20.0,Pickup
+2,Red Cabbage,,Organic Red Cabbage,10.0,Pickup
+2,Green Cabbage,,Organic Green Cabbage,5.0,Pickup
+2,Pak Choi,,Chinese Import,20.0,Pickup
