@@ -17,7 +17,7 @@ A Chess Maze Game Level Designer built in Visual Studio 2022 using Windows Forms
 
 ## How to Run the Game
 
-1. Open in Visual Stuido 2022
+1. Open in Visual Studio 2022
 2. Press green 'Play' button up top
 3. Create a custom Chess Maze game level
 
