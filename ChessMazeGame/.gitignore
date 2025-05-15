@@ -1,0 +1,49 @@
+# Build results
+bin/
+obj/
+Debug/
+Release/
+
+# VS-specific
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET-specific
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.dbmdl
+
+# Package management
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Rider / JetBrains IDEs
+.idea/
+*.sln.iml
+
+# NuGet
+*.nupkg
+*.nuspec
+*.psmdcp
+
+# Temporary files
+~$*
+*.tmp
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Images output (optional if you generate temp assets)
+Images/*.tmp
