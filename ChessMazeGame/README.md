@@ -11,7 +11,7 @@ A Chess Maze Game Level Designer built in Visual Studio 2022 using Windows Forms
 - Custom grid sizes
 - Selection and placement of chess pieces
 - Start and End position options
-- Level discriptions
+- Level descriptions
 
 ---
 
