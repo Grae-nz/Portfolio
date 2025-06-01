@@ -60,7 +60,7 @@ export default function News() {
   }, [category]);
 
   return (
-    <main className="pb-16">
+    <main className="bg-white pb-16">
       {/* Page header and image */}
       <div className="bg-black text-white p-2 flex flex-col md:flex-row items-center justify-between mb-12">
         <div className="md:w-1/2 space-y-4 md:pl-8">
@@ -74,15 +74,15 @@ export default function News() {
       </div>
 
       {/* Categories filter */}
-      <div className="flex flex-wrap justify-center gap-4 mb-10">
+      <div className="flex justify-center space-x-4 mb-8">
         {categories.map((cat, idx) => (
           <a
             key={idx}
             href={cat === "All" ? "/news-stories" : `/news-stories?category=${encodeURIComponent(cat)}`}
-            className={`px-4 py-2 rounded shadow border text-sm ${
+            className={`px-4 py-2 rounded shadow-md transition-colors duration-200 ${
               category === cat || (!category && cat === "All")
-                ? "bg-[#00B0F0] text-white font-bold"
-                : "bg-white text-black"
+                ? "bg-[#00B0F0] text-white font-bold border-none"
+                : "bg-white text-black font-normal border border-black"
             }`}
             style={{ fontFamily: 'Open Sans, sans-serif' }}
           >
@@ -92,7 +92,7 @@ export default function News() {
       </div>
 
       {/* Articles layout */}
-      <div className="flex justify-center">
+      <div className="text-black flex justify-center">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl">
           {filteredArticles.map((article, index) => (
             <a key={index} href={article.href}

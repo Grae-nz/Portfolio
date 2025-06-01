@@ -8,30 +8,30 @@ export default function VirtualAssistant() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {open ? (
-        <div className="bg-white border-4 border-[#0070C0] rounded-lg shadow-lg w-80 h-96 flex flex-col relative">
+        <div className="bg-white border-4 border-[#0070C0] rounded-lg shadow-lg w-100 h-120 flex flex-col relative overflow-hidden">
           
-          {/* Close button */}
-          <button onClick={() => setOpen(false)}
-            className="absolute top-1 right-2 text-white text-xl font-bold z-10 hover:text-[#00B0F0] transition-colors duration-200 cursor-pointer">×
+          {/* Close button (over iframe) */}
+          <button
+            onClick={() => setOpen(false)}
+            className="absolute top-2 right-3 text-white text-xl font-bold z-20 hover:text-[#00B0F0] transition-colors duration-200 cursor-pointer bg-[#0070C0] rounded-full w-7 h-7 flex items-center justify-center"
+            title="Close chat"
+          >
+            ×
           </button>
 
           {/* Assistant Header */}
-          <div className="bg-[#0070C0] text-white text-center py-2">
-            <h2 className="text-lg font-bold" style={{ fontFamily: 'Montserrat, sans-serif' }}> Virtual Assistant</h2>
+          <div className="bg-[#0070C0] text-white text-center py-2 z-10">
+            <h2 className="text-lg font-bold" style={{ fontFamily: "Montserrat, sans-serif" }}>
+              Virtual Assistant
+            </h2>
           </div>
 
-          {/* AI display chat */}
-          <div className="flex-1 overflow-y-auto border-b p-2 text-sm">
-            <p>"Sometimes Graeme is right, sometimes"</p>
-            <p>Arsenie Sarmiento - 15:58, 3/05/2025</p>
-          </div>
-
-          {/* User chat bar entry */}
-          <input
-            type="text"
-            placeholder="Type your message..."
-            className="mt-2 mx-2 mb-3 border border-[#0070C0] rounded px-2 py-1 focus:outline-none"
-          />
+          {/* Copilot Agent*/}
+          <iframe
+            src="https://copilotstudio.microsoft.com/environments/Default-ef475ff3-7cd1-4fa3-ba77-f63824f7c37c/bots/cr4d1_prostateCancerBuddy1/webchat?__version__=2"
+            title="Prostate Copilot"
+            className="flex-1 border-none"
+          ></iframe>
         </div>
       ) : (
         <button

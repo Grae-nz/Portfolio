@@ -13,42 +13,48 @@ export default function BeginnersGuide() {
           </div>
         </div>
 
-        {/* Educational sections */}
-        <div
-          className="max-w-4xl mx-auto space-y-12 px-4 pb-16"
-          style={{ fontFamily: 'Open Sans, sans-serif' }}
-        >
-          <section>
-            <h2 className="text-2xl text-[#0070C0] font-bold mb-4">What is the Prostate?</h2>
-            <img
-              src="/images/prostategland.png"
-              alt="Prostate location"
-              className="w-full max-w-md mx-auto mb-4 rounded-lg"
-            />
-            <p className="text-base leading-relaxed font-bold text-center">
-              The prostate is a small gland about the size of a walnut, located just below the bladder in men.
-            </p>
-          </section>
+        {/* Main content */}
+        <div className="bg-white max-w-6xl mx-auto px-4 py-12 space-y-16" style={{ fontFamily: 'Open Sans, sans-serif' }}>
 
-          <section>
-            <h2 className="text-2xl text-[#0070C0] font-bold mb-4">What does the Prostate Do?</h2>
-            <p className="text-base leading-relaxed font-bold">
-              It plays a role in producing fluid that makes up part of semen.
-            </p>
-          </section>
+          {/* What is the Prostate? */}
+          <div className="bg-gray-50 text-black flex flex-col lg:flex-row gap-8 items-start p-6 rounded-xl shadow-md">
+            <section className="space-y-4 text-lg leading-relaxed lg:w-2/3">
+              <h2 className="text-xl font-bold text-[#0070C0]">What is the Prostate?</h2>
+              <p>The prostate is a small gland about the size of a walnut, located just below the bladder in men.</p>
+            </section>
+            <div className="lg:w-1/3">
+              <img src="/images/prostategland.png" alt="Prostate location" className="w-full rounded-md" />
+            </div>
+          </div>
 
-          <section>
-            <h2 className="text-2xl text-[#0070C0] font-bold mb-4">What is Prostate Cancer?</h2>
-            <p className="text-base leading-relaxed font-bold">
-              Prostate cancer is when cells in the prostate grow uncontrollably. It is one of the most common types of cancer in men, but many cases grow slowly and are treatable.
-            </p>
-          </section>
+          {/* What does the Prostate Do? */}
+          <div className="bg-gray-50 text-black flex flex-col lg:flex-row gap-8 items-start p-6 rounded-xl shadow-md">
+            <section className="space-y-4 text-lg leading-relaxed lg:w-2/3">
+              <h2 className="text-xl font-bold text-[#0070C0]">What does the Prostate Do?</h2>
+              <p>It plays a role in producing fluid that makes up part of semen.</p>
+            </section>
+            <div className="lg:w-1/3">
+              <img src="/images/prostatedo.png" alt="Prostate function" className="w-full rounded-md" />
+            </div>
+          </div>
 
-          <section>
-            <h2 className="text-2xl text-[#0070C0] font-bold mb-4">Signs and Symptoms</h2>
+          {/* What is Prostate Cancer? */}
+          <div className="bg-gray-50 text-black flex flex-col lg:flex-row gap-8 items-start p-6 rounded-xl shadow-md">
+            <section className="space-y-4 text-lg leading-relaxed lg:w-2/3">
+              <h2 className="text-xl font-bold text-[#0070C0]">What is Prostate Cancer?</h2>
+              <p>Prostate cancer is when cells in the prostate grow uncontrollably. It is one of the most common types of cancer in men, but many cases grow slowly and are treatable.</p>
+            </section>
+            <div className="lg:w-1/3">
+              <img src="/images/noimage.png" alt="Prostate cancer" className="w-full rounded-md" />
+            </div>
+          </div>
+
+          {/* Signs and Symptoms */}
+          <div className="bg-gray-50 text-black space-y-4 p-6 rounded-xl shadow-md">
+            <h2 className="text-xl font-bold text-[#0070C0]">Signs and Symptoms</h2>
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-6">
-              {[
-                { label: 'Trouble urinating', image: '/images/troubleurinating.png' },
+              {[{
+                label: 'Trouble urinating', image: '/images/troubleurinating.png' },
                 { label: 'Frequent urination at night', image: '/images/frequenturination.png' },
                 { label: 'Blood in urine or semen', image: '/images/bloodurine.png' },
                 { label: 'Pain or burning during urination', image: '/images/painurine.png' },
@@ -60,35 +66,52 @@ export default function BeginnersGuide() {
                 </div>
               ))}
             </div>
-          </section>
+          </div>
 
-          <section>
-            <h2 className="text-2xl text-[#0070C0] font-bold mb-4">Causes and Risks</h2>
-            <p className="text-base leading-relaxed font-bold">
-              Age, genetics, ethnicity, and diet can influence your risk. African descent and family history of prostate cancer increase the risk.
-            </p>
-          </section>
+          {/* Causes and Risks */}
+          <div className="bg-gray-50 text-black flex flex-col lg:flex-row gap-8 items-start p-6 rounded-xl shadow-md">
+            <section className="space-y-4 text-lg leading-relaxed lg:w-2/3">
+              <h2 className="text-xl font-bold text-[#0070C0]">Causes and Risks</h2>
+              <p>Age, genetics, ethnicity, and diet can influence your risk. African descent and family history of prostate cancer increase the risk.</p>
+            </section>
+            <div className="lg:w-1/3">
+              <img src="/images/noimage.png" alt="Causes and risks" className="w-full rounded-md shadow-md" />
+            </div>
+          </div>
 
-          <section>
-            <h2 className="text-2xl text-[#0070C0] font-bold mb-4">How is it Diagnosed?</h2>
-            <p className="text-base leading-relaxed font-bold">
-              Diagnosis may involve a PSA blood test, digital rectal exam (DRE), imaging, and sometimes a biopsy to confirm cancer.
-            </p>
-          </section>
+          {/* How is it Diagnosed? */}
+          <div className="bg-gray-50 text-black flex flex-col lg:flex-row gap-8 items-start p-6 rounded-xl shadow-md">
+            <section className="space-y-4 text-lg leading-relaxed lg:w-2/3">
+              <h2 className="text-xl font-bold text-[#0070C0]">How is it Diagnosed?</h2>
+              <p>Diagnosis may involve a PSA blood test, digital rectal exam (DRE), imaging, and sometimes a biopsy to confirm cancer.</p>
+            </section>
+            <div className="lg:w-1/3">
+              <img src="/images/psatest.png" alt="Diagnosis" className="w-full rounded-md shadow-md" />
+            </div>
+          </div>
 
-          <section>
-            <h2 className="text-2xl text-[#0070C0] font-bold mb-4">Staging and Grades</h2>
-            <p className="text-base leading-relaxed font-bold">
-              Staging helps determine how far the cancer has spread. The Gleason score indicates how aggressive the cancer might be.
-            </p>
-          </section>
+          {/* Staging and Grades */}
+          <div className="bg-gray-50 text-black flex flex-col lg:flex-row gap-8 items-start p-6 rounded-xl shadow-md">
+            <section className="space-y-4 text-lg leading-relaxed lg:w-2/3">
+              <h2 className="text-xl font-bold text-[#0070C0]">Staging and Grades</h2>
+              <p>Staging helps determine how far the cancer has spread. The Gleason score indicates how aggressive the cancer might be.</p>
+            </section>
+            <div className="lg:w-1/3">
+              <img src="/images/noimage.png" alt="Staging and grades" className="w-full rounded-md shadow-md" />
+            </div>
+          </div>
 
-          <section>
-            <h2 className="text-2xl text-[#0070C0] font-bold mb-4">Treatment Options</h2>
-            <p className="text-base leading-relaxed font-bold">
-              Treatment can include active surveillance, surgery, radiation therapy, hormone therapy, or chemotherapy—depending on the stage and individual health.
-            </p>
-          </section>
+          {/* Treatment Options */}
+          <div className="bg-gray-50 text-black flex flex-col lg:flex-row gap-8 items-start p-6 rounded-xl shadow-md">
+            <section className="space-y-4 text-lg leading-relaxed lg:w-2/3">
+              <h2 className="text-xl font-bold text-[#0070C0]">Treatment Options</h2>
+              <p>Treatment can include active surveillance, surgery, radiation therapy, hormone therapy, or chemotherapy depending on the stage and individual health.</p>
+            </section>
+            <div className="lg:w-1/3">
+              <img src="/images/noimage.png" alt="Treatment options" className="w-full rounded-md shadow-md" />
+            </div>
+          </div>
+
         </div>
     </main>
     );

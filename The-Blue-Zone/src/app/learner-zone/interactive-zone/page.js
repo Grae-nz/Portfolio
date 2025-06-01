@@ -1,15 +1,17 @@
+"use client";
+
 export default function InteractiveZone() {
     return (
       <main>
         {/* Page header and image */}
-        <div className="bg-black text-white p-8 flex flex-col md:flex-row items-center justify-between mb-12">
+        <div className="bg-black text-white p-2 flex flex-col md:flex-row items-center justify-between mb-12">
           <div className="md:w-1/2 space-y-4 md:pl-8">
             <h1 className="text-4xl font-bold" style={{ fontFamily: 'Montserrat, sans-serif' }}>Interactive Zone</h1>
-            <h2 className="text-2xl" style={{ fontFamily: 'Montserrat, sans-serif' }}>Placeholder Header</h2>
-            <h3 className="text-base" style={{ fontFamily: 'Open Sans, sans-serif' }}>Placeholder text...</h3>
+            <h2 className="text-2xl" style={{ fontFamily: 'Montserrat, sans-serif' }}>Educational games and activities</h2>
+            <h3 className="text-base" style={{ fontFamily: 'Open Sans, sans-serif' }}>Test your knowledge with fun and interactive challenges</h3>
           </div>
-          <div className="md:w-1/2 mt-6 md:mt-0 flex justify-center">
-            <img src="/images/noimage.png" alt="Home Page Header Image" className="w-1/2 object-contain" />
+          <div className="md:w-1/2 mt-6 md:mt-0 aspect-[3/2] max-w-[700px] mx-auto">
+            <img src="/images/interactivezone.png" alt="Home Page Header Image" className="w-full h-full object-cover rounded-lg"/>
           </div>
         </div>
 
@@ -17,18 +19,18 @@ export default function InteractiveZone() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-16">
       {[
         {
-          href: '/information-support/prostate-cancer-info',
-          title: 'Placeholder',
-          image: '/images/noimage.png',
-          description: 'placeholder text',
-        },
-        {
-          href: '/risks-symptons',
-          title: 'Placeholder',
-          image: '/images/noimage.png',
-          description: 'placeholder text',
+          href: '/learner-zone/interactive-zone/quiz-game',
+          title: 'Quiz Game',
+          image: '/images/quiz.png',
+          description: 'Take the quiz to test your general knowledge!',
         },
 
+        {
+          href: '/learner-zone/interactive-zone/symptoms-game',
+          title: 'Symptoms Game',
+          image: '/images/symptomsgame.png',
+          description: 'Make recommendations based on symptoms',
+        },
 
       ].map(({ href, title, image, description }, index) => (
         <div className="flex justify-center" key={index}>

@@ -45,7 +45,7 @@ export default function Home() {
         <div className="flex justify-center" key={index}>
           <a href={href} className="transition-transform duration-300 hover:scale-105 relative w-3/4">
             <img src={image} alt={`${title} Image`} className="object-contain rounded-lg shadow-lg w-full z-0"/>
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black bg-black/25 rounded-lg px-2 z-10">
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white rounded-lg px-2 z-10">
               <h2 className="text-2xl font-bold bg-[#00B0F0] rounded-full px-4 py-1" style={{ fontFamily: 'Montserrat, sans-serif' }}> {title}</h2>
               <h3 className="text-sm mt-2 bg-white text-black rounded-full px-4 py-1 font-bold" style={{ fontFamily: 'Open Sans, sans-serif' }}> {description}</h3>
             </div>
