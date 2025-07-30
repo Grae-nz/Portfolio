@@ -10,7 +10,7 @@ A prostate awareness website built in Next.js (Currently still a work in progres
 
 - Responsive web design
 - Gamification
-- AI virtual Agent
+- AI Virtual Agent
 
 ---
 
